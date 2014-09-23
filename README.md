@@ -5,7 +5,7 @@ A simple fishing bot for FFXIVARR (v2014.09.11).
 
 This is for educational purposes only.  
 This was made as an experiment and to help me learn more about development.
-I don't encourage long-term use of bots.
+I don't encourage the long-term use of bots.
 
 How to use
 ==========

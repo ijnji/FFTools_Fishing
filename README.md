@@ -9,10 +9,12 @@ I don't encourage long-term use of bots.
 
 How to use
 ==========
-- This was made using the .NET 4 framework.
+- Make sure the .NET 4 framework is installed.
 
-- Compile in Windows using cmd.exe, "$ csc.exe FFTools_MemoryManager.cs FFTools_Fishing.cs"
+- Compile in Windows using cmd.exe.
+>`$ csc.exe FFTools_MemoryManager.cs FFTools_Fishing.cs`
 
 - Make sure FFIXARR is running and you're in-game.
 
-- Run from cmd.exe, "$ FFTools_Fishing.exe"
+- Run from cmd.exe.
+>`$ FFTools_Fishing.exe`

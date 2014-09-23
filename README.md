@@ -11,8 +11,11 @@ How to use
 ==========
 - Make sure the .NET 4 framework is installed.
 - Check the keybinds in FFTools_Fishing.cs for "Cast", and "Hook".  By default, "Cast" is "2", and "Hook" is "3".
-- Compile in Windows using cmd.exe.
+- Compile in Windows using cmd.exe:
+
 >`$ csc.exe FFTools_MemoryManager.cs FFTools_Fishing.cs`
+
 - Make sure FFIXARR is running and that you're in-game.  Switch to FSH class, and stand at a fish-able location.
-- Run from cmd.exe.
+- Run from cmd.exe:
+
 >`$ FFTools_Fishing.exe`

@@ -1,7 +1,7 @@
 FFTools_Fishing
 ===============
 
-A simple fishing automation tool for FFXIVARR (v2014.09.11).
+A simple fishing bot for FFXIVARR (v2014.09.11).
 
 This is for educational purposes only.  
 This was made as an experiment and to help me learn more about development.

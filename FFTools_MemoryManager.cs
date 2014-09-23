@@ -6,8 +6,8 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 
 namespace FFTools {
-	public class MemoryManager {
-		// Memory handling.
+    public class MemoryManager {
+    // Memory handling.
         private const int PERM_PROC_WM_READ = 0x0010;
         private const int WM_KEYDOWN = 0x0100;
         private const int WM_KEYUP = 0x0101;
@@ -42,62 +42,62 @@ namespace FFTools {
         private IntPtr AddrFishBite = IntPtr.Zero;
 
         // Other fields. 
-	
-		public MemoryManager() {}
+    
+    public MemoryManager() {}
 
-		public int initialize() {
-			Process[] pList = Process.GetProcessesByName("ffxiv");
-	        if (pList.Length == 0)
-	        {
-	            System.Console.WriteLine("Could not find the FFXIV process.");
-	            return 1;
-	        }
-	        Proc = pList[0];
-	        ProcHandle = OpenProcess(PERM_PROC_WM_READ, false, Proc.Id);
-	        ProcAddrBase = Proc.MainModule.BaseAddress;
+    public int initialize() {
+    Process[] pList = Process.GetProcessesByName("ffxiv");
+            if (pList.Length == 0)
+            {
+                System.Console.WriteLine("Could not find the FFXIV process.");
+                return 1;
+            }
+            Proc = pList[0];
+            ProcHandle = OpenProcess(PERM_PROC_WM_READ, false, Proc.Id);
+            ProcAddrBase = Proc.MainModule.BaseAddress;
             System.Console.WriteLine("---");
-	        System.Console.WriteLine("Found the FFXIV process at 0x" + ProcAddrBase.ToString("X8"));
+            System.Console.WriteLine("Found the FFXIV process at 0x" + ProcAddrBase.ToString("X8"));
 
-	     	System.Console.WriteLine("---");
-	      	//System.Console.WriteLine("Pointer walking for the general dialog box address...");
-	      	//AddrGenDiag = pointerWalk(ProcAddrBase, ADDROFFS_GENDIAG);
-	        System.Console.WriteLine("Manually setting the general dialog box address...");
-	        AddrGenDiag = (IntPtr)0x05AF3680;
-	        System.Console.WriteLine("Setting general dialog box address as 0x" + AddrGenDiag.ToString("X8"));     
+            System.Console.WriteLine("---");
+            //System.Console.WriteLine("Pointer walking for the general dialog box address...");
+            //AddrGenDiag = pointerWalk(ProcAddrBase, ADDROFFS_GENDIAG);
+            System.Console.WriteLine("Manually setting the general dialog box address...");
+            AddrGenDiag = (IntPtr)0x05AF3680;
+            System.Console.WriteLine("Setting general dialog box address as 0x" + AddrGenDiag.ToString("X8"));     
 
-	        System.Console.WriteLine("---");
-	        System.Console.WriteLine("Pointer walking for the fish bite status address...");
-	        AddrFishBite = pointerWalk(ProcAddrBase, ADDR_PWALK_FISHBITE);
-	        System.Console.WriteLine("Setting fish bite status address as 0x" + AddrFishBite.ToString("X8"));
+            System.Console.WriteLine("---");
+            System.Console.WriteLine("Pointer walking for the fish bite status address...");
+            AddrFishBite = pointerWalk(ProcAddrBase, ADDR_PWALK_FISHBITE);
+            System.Console.WriteLine("Setting fish bite status address as 0x" + AddrFishBite.ToString("X8"));
 
-	        return 0;
-		}
+            return 0;
+    }
 
-		private IntPtr pointerWalk(IntPtr addrBase, int[] addrOffs) {
-	        if (addrOffs.Length == 0) return addrBase;
-	        IntPtr addrCurrent = addrBase;
-	        for (int i = 0; i < addrOffs.Length; i++) {
-	            if (i == addrOffs.Length - 1) {
-	                IntPtr addrNew = IntPtr.Add(addrCurrent, addrOffs[i]);
-	                System.Console.WriteLine(
-	                    "0x" + addrCurrent.ToString("X8") + " + " +
-	                    "0x" + addrOffs[i].ToString("X8") + " = " +
-	                    "0x" + addrNew.ToString("X8")
-	                );
-	                return addrNew;
-	            } else {  
-	                IntPtr addrNew = IntPtr.Add(addrCurrent, addrOffs[i]);
-	                addrNew = (IntPtr)readProcInt(addrNew);
-	                System.Console.WriteLine(
-	                    "[0x" + addrCurrent.ToString("X8") + " + " +
-	                    "0x" + addrOffs[i].ToString("X8") + "] -> " +
-	                    "0x" + addrNew.ToString("X8")
-	                );
-	                addrCurrent = addrNew;
-	            }
-	        }
-	        return addrCurrent;
-	    }
+    private IntPtr pointerWalk(IntPtr addrBase, int[] addrOffs) {
+            if (addrOffs.Length == 0) return addrBase;
+            IntPtr addrCurrent = addrBase;
+            for (int i = 0; i < addrOffs.Length; i++) {
+                if (i == addrOffs.Length - 1) {
+                    IntPtr addrNew = IntPtr.Add(addrCurrent, addrOffs[i]);
+                    System.Console.WriteLine(
+                        "0x" + addrCurrent.ToString("X8") + " + " +
+                        "0x" + addrOffs[i].ToString("X8") + " = " +
+                        "0x" + addrNew.ToString("X8")
+                    );
+                    return addrNew;
+                } else {  
+                    IntPtr addrNew = IntPtr.Add(addrCurrent, addrOffs[i]);
+                    addrNew = (IntPtr)readProcInt(addrNew);
+                    System.Console.WriteLine(
+                        "[0x" + addrCurrent.ToString("X8") + " + " +
+                        "0x" + addrOffs[i].ToString("X8") + "] -> " +
+                        "0x" + addrNew.ToString("X8")
+                    );
+                    addrCurrent = addrNew;
+                }
+            }
+            return addrCurrent;
+        }
         public void sendKeyPressMsg(Keys key, int delay) {
             PostMessage(Proc.MainWindowHandle, WM_KEYDOWN, (IntPtr)key, IntPtr.Zero);
             Thread.Sleep(delay);
@@ -112,7 +112,7 @@ namespace FFTools {
             PostMessage(Proc.MainWindowHandle, WM_KEYUP, (IntPtr)key, IntPtr.Zero);
         }
 
-	    private int readProcInt(IntPtr addr) {
+        private int readProcInt(IntPtr addr) {
             return BitConverter.ToInt32(readProcByteBlock(addr, 4), 0);
         }
 

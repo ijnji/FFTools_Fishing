@@ -47,8 +47,7 @@ namespace FFTools {
 
     public int initialize() {
     Process[] pList = Process.GetProcessesByName("ffxiv");
-            if (pList.Length == 0)
-            {
+            if (pList.Length == 0) {
                 System.Console.WriteLine("Could not find the FFXIV process.");
                 return 1;
             }

@@ -204,7 +204,7 @@ namespace FFTools {
         }
 
         public bool readFishBite() {
-            if ( readProcInt(AddrFishBite) == FISHBITE_BITE ) return true;
+            if (readProcInt(AddrFishBite) == FISHBITE_BITE) return true;
             else return false;
         }
     }

@@ -43,10 +43,10 @@ namespace FFTools {
 
         // Other fields. 
     
-    public MemoryManager() {}
+        public MemoryManager() {}
 
-    public int initialize() {
-    Process[] pList = Process.GetProcessesByName("ffxiv");
+        public int initialize() {
+        Process[] pList = Process.GetProcessesByName("ffxiv");
             if (pList.Length == 0) {
                 System.Console.WriteLine("Could not find the FFXIV process.");
                 return 1;
@@ -70,9 +70,9 @@ namespace FFTools {
             System.Console.WriteLine("Setting fish bite status address as 0x" + AddrFishBite.ToString("X8"));
 
             return 0;
-    }
+        }
 
-    private IntPtr pointerWalk(IntPtr addrBase, int[] addrOffs) {
+        private IntPtr pointerWalk(IntPtr addrBase, int[] addrOffs) {
             if (addrOffs.Length == 0) return addrBase;
             IntPtr addrCurrent = addrBase;
             for (int i = 0; i < addrOffs.Length; i++) {

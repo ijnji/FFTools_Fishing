@@ -7,7 +7,7 @@ This is for educational purposes only.
 This was made as an experiment and to help me learn more about development.
 I don't encourage the long-term use of bots.
 
-How to use
+Usage
 ==========
 - Make sure the .NET 4 framework is installed.
 - Check the keybinds in FFTools_Fishing.cs for "Cast", and "Hook".  By default, "Cast" is "2", and "Hook" is "3".

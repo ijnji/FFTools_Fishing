@@ -9,7 +9,7 @@ I don't encourage the long-term use of bots.
 
 Usage
 ==========
-- Make sure the .NET 4 framework is installed.
+- Check that version 4 or above .NET is installed.
 - Check the keybinds in FFTools_Fishing.cs for "Cast", and "Hook".  By default, "Cast" is "2", and "Hook" is "3".
 - Compile in Windows using cmd.exe:
 
